@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Favicon -->
+<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%235B2C83'/%3E%3Cpath fill='%23FF8C00' d='M30,42 L70,42 L70,58 L30,58 Z'/%3E%3Cpath fill='%23FFFFFF' d='M46,30 L54,30 L54,70 L46,70 Z'/%3E%3Ccircle cx='50' cy='45' r='6' fill='%23FF8C00'/%3E%3Ctext x='50' y='82' font-size='14' text-anchor='middle' fill='white' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%235B2C83'/%3E%3Cpath fill='%23FF8C00' d='M30,42 L70,42 L70,58 L30,58 Z'/%3E%3Cpath fill='%23FFFFFF' d='M46,30 L54,30 L54,70 L46,70 Z'/%3E%3Ccircle cx='50' cy='45' r='6' fill='%23FF8C00'/%3E%3Ctext x='50' y='82' font-size='14' text-anchor='middle' fill='white' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E">
     <style>
         * {
             margin: 0;
@@ -140,29 +143,37 @@
             align-items: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         .logo img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+    width: auto;         /* Allow width to scale naturally */
+    height: 65px;        /* Slightly larger for readability */
+    object-fit: contain; /* Prevents stretching */
+    border-radius: 0;    /* Remove 50% radius if using the square logo I gave you */
+    transition: var(--transition);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Adds subtle depth */
+}
 
-        .logo-text h2 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin: 0;
-        }
+       .logo img {
+    width: auto;         /* Allow width to scale naturally */
+    height: 65px;        /* Slightly larger for readability */
+    object-fit: contain; /* Prevents stretching */
+    border-radius: 0;    /* Remove 50% radius if using the square logo I gave you */
+    transition: var(--transition);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Adds subtle depth */
+}
+
+/* Make logo slightly smaller on scroll for a premium feel */
+header.scrolled .logo img {
+    height: 50px;
+}
+
+.logo-text h2 {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px; /* Tighter tracking looks more modern */
+    text-transform: uppercase; /* Optional: makes the brand name feel more established */
+}
 
         .logo-text p {
-            font-size: 0.7rem;
-            color: var(--gray-dark);
-            letter-spacing: 1px;
+            display: none;
         }
 
         .nav-links {
@@ -359,7 +370,7 @@
             margin-bottom: 8px;
         }
 
-        /* ABOUT SECTION (from about.html) */
+        /* ABOUT SECTION */
         .about-section {
             padding: 100px 0;
             background: var(--gray-light);
@@ -434,7 +445,7 @@
             font-weight: bold;
         }
 
-        /* SERVICES SECTION (detailed from about.html) */
+        /* SERVICES SECTION WITH IMAGE CONTAINERS */
         .services-section {
             padding: 100px 0;
         }
@@ -448,10 +459,11 @@
 
         .service-card {
             background: var(--gray-light);
-            padding: 35px 25px;
             border-radius: 20px;
+            overflow: hidden;
             transition: var(--transition);
             text-align: center;
+            padding: 0;
         }
 
         .service-card:hover {
@@ -460,15 +472,37 @@
             background: var(--white);
         }
 
+        /* IMAGE CONTAINER FOR SERVICE CARDS */
+        .service-img-container {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f0fa, #e8e0f0);
+        }
+
+        .service-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .service-card:hover .service-img-container img {
+            transform: scale(1.05);
+        }
+
         .service-card h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            margin: 20px 20px 12px;
+            font-size: 1.3rem;
         }
 
         .service-card p {
             color: var(--gray-dark);
+            padding: 0 20px 25px;
             font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* MISSION & VISION CARDS */
@@ -505,6 +539,94 @@
         .mission-card p {
             color: var(--gray-dark);
             font-size: 1.1rem;
+        }
+
+        /* EYE-CATCHING GET A QUOTE BUTTON */
+        .btn-get-quote-catchy {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #FF5500, #FF8C00, #FFB347, #FF6600);
+            background-size: 300% auto;
+            color: white;
+            font-weight: 800;
+            font-size: 1.35rem;
+            padding: 18px 48px;
+            border-radius: 70px;
+            text-decoration: none;
+            box-shadow: 0 20px 35px rgba(255, 68, 0, 0.55), 0 0 0 2px rgba(255,255,200,0.3) inset;
+            transition: all 0.3s ease;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            animation: vibrantPulse 2.2s infinite, gradientShift 3s ease infinite;
+            backdrop-filter: blur(1px);
+        }
+
+        .btn-get-quote-catchy i {
+            font-size: 1.7rem;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+            transition: transform 0.2s;
+        }
+
+        .btn-get-quote-catchy:hover {
+            transform: translateY(-7px) scale(1.02);
+            background: linear-gradient(135deg, #FF4400, #FF7A00, #FFA500, #FF5500);
+            background-size: 300% auto;
+            box-shadow: 0 28px 45px rgba(255, 68, 0, 0.75);
+            color: white;
+            animation: none;
+        }
+
+        .btn-get-quote-catchy:hover i {
+            transform: translateX(8px);
+        }
+
+        @keyframes vibrantPulse {
+            0% { 
+                box-shadow: 0 20px 35px rgba(255, 68, 0, 0.5), 0 0 0 0 rgba(255,140,0,0.4); 
+            }
+            50% { 
+                box-shadow: 0 25px 45px rgba(255, 68, 0, 0.8), 0 0 0 6px rgba(255,140,0,0.2); 
+            }
+            100% { 
+                box-shadow: 0 20px 35px rgba(255, 68, 0, 0.5), 0 0 0 0 rgba(255,140,0,0); 
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Eye-catching colored button for Get a Quote */
+        .btn-quote-colored {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #FF8C00, #FF5500);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 85, 0, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-quote-colored i {
+            font-size: 1.2rem;
+        }
+
+        .btn-quote-colored:hover {
+            background: linear-gradient(135deg, #FF7700, #FF4400);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 85, 0, 0.5);
+            color: white;
         }
 
         /* LOCATIONS SECTION */
@@ -740,18 +862,38 @@
             transform: translateY(0);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             h1 { font-size: 2.8rem; }
             h2 { font-size: 2rem; }
-            .hero-split { grid-template-columns: 1fr; }
-            .services-grid, .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .hero-split { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { text-align: center; }
+            .hero-features { justify-content: center; }
+            .services-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .mission-container, .about-info-row { grid-template-columns: 1fr; }
+            .about-container { grid-template-columns: 1fr; gap: 40px; }
             .locations-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
+            .container { width: 92%; }
+            h1 { font-size: 2rem; line-height: 1.2; }
+            h2 { font-size: 1.8rem; }
+            .hero, .about-section, .mission-section, .services-section, .locations-section, .testimonials-section, .cta-section { padding: 70px 0; }
+            .hero-form-card { padding: 25px 20px; }
+            .services-grid, .testimonials-grid, .about-info-row, .mission-container, .footer-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .locations-grid { grid-template-columns: repeat(2, 1fr); }
+            .service-img-container { height: 200px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+            .top-bar { font-size: 0.8rem; }
+            .top-bar-flex { flex-direction: column; text-align: center; }
+            .contact-info, .license-info { line-height: 1.6; }
             .mobile-toggle { display: block; }
             .nav-links {
                 display: none;
@@ -766,28 +908,29 @@
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
             .nav-links.active { display: flex; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .services-grid, .testimonials-grid, .about-info-row {
-                grid-template-columns: 1fr;
-            }
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .locations-grid { grid-template-columns: repeat(2, 1fr); }
-            .top-bar-flex { flex-direction: column; text-align: center; }
             .hero-features { justify-content: center; }
             .hero-content { text-align: center; }
-            h1 { font-size: 2rem; }
-            .mission-container { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .locations-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
+            .container { width: 94%; }
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.5rem; }
+            .stats-grid, .locations-grid { grid-template-columns: 1fr; }
+            .hero-features { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .hero-content { text-align: left; }
+            .hero-form-card { padding: 20px 16px; }
+            .service-card, .testimonial-card, .mission-card, .about-card { padding: 0; }
+            .service-img-container { height: 180px; }
+            .service-card h3 { margin: 15px 15px 8px; }
+            .service-card p { padding: 0 15px 20px; }
+            .logo img { width: 50px; height: 50px; }
+            .logo-text h2 { font-size: 1rem; }
+            .nav-links { padding: 15px; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .btn-get-quote-catchy { font-size: 0.9rem; padding: 12px 20px; }
         }
-    </style>
+</style>
 </head>
 <body>
 
@@ -797,7 +940,7 @@
             <div class="contact-info">
                 <i class="fas fa-phone-alt"></i> (203) 826-7340
                 <span class="separator">|</span>
-                <i class="fas fa-envelope"></i> amazinggrace.home@gmail.com
+                <i class="fas fa-envelope"></i> amazinngrace.home@gmail.com
             </div>
             <div class="license-info">
                 <i class="fas fa-certificate"></i> Licensed · Bonded · Insured · HCA.0001448
@@ -808,13 +951,13 @@
     <!-- HEADER / NAVIGATION (no Contact button) -->
     <header>
         <div class="container navbar">
-            <div class="logo">
-                <img src="./image/logo.jpeg" alt="Amazing Grace At Home Logo" onerror="this.src='https://placehold.co/80x80?text=AG'">
-                <div class="logo-text">
-                    <h2>Amazing Grace</h2>
-                    <p>At Home Care Services</p>
-                </div>
-            </div>
+           <div class="logo">
+    
+    <div class="logo-text">
+        <h2>Amazing Grace</h2>
+        <p style="display: block; font-size: 0.7rem; color: var(--gray-dark); margin-top: -5px; font-weight: 600;">HOME CARE SERVICES</p>
+    </div>
+</div>
             <div class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -839,7 +982,6 @@
                 <div class="hero-features">
                     <div class="feature"><i class="fas fa-check-circle"></i> 8+ Years Experience</div>
                     <div class="feature"><i class="fas fa-check-circle"></i> 24/7 Availability</div>
-                    <div class="feature"><i class="fas fa-check-circle"></i> Certified Caregivers</div>
                 </div>
                 <div class="hero-quote">
                     <i class="fas fa-quote-left"></i> Our top priority is to care and make you feel Loved.
@@ -921,7 +1063,7 @@
                 </div>
                 <div class="story-text reveal">
                     <h2>Our Story</h2>
-                    <p>Amazing Grace At Home was founded in 2018 by a Certified Nursing Assistant with over 10 years of caregiving and homemaking experience.</p>
+                    <p>Amazing Grace At Home was founded in 2018 by a Certified Nursing Assistant with over 8 years of caregiving and homemaking experience.</p>
                     
                     <div class="about-info-row">
                         <div class="about-card">
@@ -931,7 +1073,6 @@
                         <div class="about-card">
                             <h3>Care Schedule</h3>
                             <ul>
-                                <li><strong>Hourly Shift</strong> — 2 to 22 hours daily at your specified location.</li>
                                 <li><strong>24/7 Live-In</strong> — Continuous support when a full-time caregiver is needed.</li>
                                 <li><strong>Night Shift</strong> — Caring monitoring and support through sleeping hours.</li>
                             </ul>
@@ -940,45 +1081,6 @@
 
                     <p>We believe every individual deserves quality care while remaining in the comfort of their own home.</p>
                     <p>Our caregivers are <strong>loving, caring, compassionate, reliable, experienced, trustworthy and efficient.</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION (detailed from about.html) -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">What We Offer</span>
-                <h2>Our Services</h2>
-                <div class="section-line"></div>
-                <p>Certified caregiving support for daily tasks, companionship, and health safety.</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3>Certified Nurses Aides (CNA)</h3>
-                    <p>These caregivers provide efficient care, offer a helping hand where necessary, and support daily clinical aid and personal tasks.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Sitters</h3>
-                    <p>Compassionate caregivers who provide comfort, assist in communication, and help maintain basic client safety.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Home Making</h3>
-                    <p>We help keep homes cleaner and more peaceful by assisting with laundry, dishes, shopping, bed preparation, light housekeeping, and meal making.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Personal Care</h3>
-                    <p>Bathing, bedside care, grooming, and dressing to help clients look and feel their best.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Companionship</h3>
-                    <p>Friendly, loving, and compassionate care with excellent communication skills. We treat our clients like family.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Basic Health and Safety</h3>
-                    <p>We ensure a safer environment and daily health routines, including medication reminders, ambulation, transfers, and light exercise support.</p>
                 </div>
             </div>
         </div>
@@ -999,6 +1101,73 @@
             </div>
         </div>
     </section>
+
+    <!-- SERVICES SECTION (detailed from about.html) -->
+    <section id="services" class="services-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">What We Offer</span>
+            <h2>Our Services</h2>
+            <div class="section-line"></div>
+            <p>Certified caregiving support for daily tasks, companionship, and health safety.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Service Card 1 - Sitters with Image Container -->
+            <div class="service-card reveal">
+                <div class="service-img-container">
+                    <img src="/image/G1.png" alt="Compassionate sitter care">
+                </div>
+                <h3>Sitters</h3>
+                <p>Compassionate caregivers who provide comfort, assist in communication, and help maintain basic client safety.</p>
+            </div>
+            
+            <!-- Service Card 2 - Home Making with Image Container -->
+            <div class="service-card reveal">
+                <div class="service-img-container">
+                    <img src="/image/G2.png" alt="Home making assistance">
+                </div>
+                <h3>Home Making</h3>
+                <p>We help keep homes cleaner and more peaceful by assisting with laundry, dishes, shopping, bed preparation, light housekeeping, and meal making.</p>
+            </div>
+            
+            <!-- Service Card 3 - Personal Care with Image Container -->
+            <div class="service-card reveal">
+                <div class="service-img-container">
+                    <img src="/image/WhatsApp Image 2026-05-14 at 05.42.06.jpeg" alt="Personal care assistance">
+                </div>
+                <h3>Personal Care</h3>
+                <p>Bathing, bedside care, grooming, and dressing to help clients look and feel their best.</p>
+            </div>
+            
+            <!-- Service Card 4 - Companionship with Image Container -->
+            <div class="service-card reveal">
+                <div class="service-img-container">
+                    <img src="/image/G3.png" alt="Companionship and emotional support">
+                </div>
+                <h3>Companion</h3>
+                <p>Friendly, loving, and compassionate care with excellent communication skills. We treat our clients like family.</p>
+            </div>
+            
+            <!-- Service Card 5 - Basic Health and Safety with Image Container -->
+            <div class="service-card reveal">
+                <div class="service-img-container">
+                    <img src="/image/G4.png" alt="Health and safety reminders">
+                </div>
+                <h3>Basic Health and Safety</h3>
+                <p>We ensure a safer environment and daily health routines, including medication reminders, ambulation, transfers, and light exercise support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Add this button directly BELOW the closing </div> of .services-grid and BEFORE the closing </div> of the services .container -->
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="#requestForm" class="btn-quote-colored">
+        <i class="fas fa-file-alt"></i> Get a Quote
+    </a>
+</div>
+    
 
     <!-- LOCATIONS SERVED -->
     <section id="locations" class="locations-section">
@@ -1048,7 +1217,7 @@
                 </div>
                 <div class="testimonial-card reveal">
                     <i class="fas fa-quote-left"></i>
-                    <p>"Professional caregivers with genuine compassion and patience. They made a difficult time so much easier for our family."</p>
+                    <p>"caregivers with genuine compassion and patience. They made a difficult time so much easier for our family."</p>
                     <div class="testimonial-author">
                         <strong>- David R.</strong>
                         <div class="stars">★★★★★</div>
@@ -1078,6 +1247,77 @@
         </div>
     </section>
 
+    <!-- ================================================
+     POWERED BY TECH TRSM SECTION - Place above footer
+     Add this HTML container right before your <footer> tag
+     ================================================ -->
+
+<div class="powered-by">
+    <div class="container powered-container">
+        <span class="powered-text">POWERED BY CTRL SQUAD</span>
+        <div class="tech-logo-placeholder" id="techLogoContainer">
+            <img src="/image/ctrl.jpeg" 
+                 alt="Tech TRSM Logo" 
+                 style="height: 45px; width: auto; max-width: 160px;"
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-microchip\'></i><span>TECH TRSM</span>';">
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styles for the powered by section */
+    .powered-by {
+        background: #0a0a1a;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .powered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .powered-text {
+        color: #aaa;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+    .tech-logo-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 6px 24px;
+        border-radius: 50px;
+        transition: 0.2s;
+    }
+    /* REMOVED the filter that was causing issues */
+    .tech-logo-placeholder img {
+        height: 42px;
+        width: auto;
+        max-width: 160px;
+        object-fit: contain;
+        /* REMOVED: filter: brightness(0) invert(1); */
+    }
+    .tech-logo-placeholder span {
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .tech-logo-placeholder i {
+        font-size: 28px;
+        color: #FF8C00;
+    }
+    @media (max-width: 768px) {
+        .powered-container { gap: 12px; }
+        .powered-text { font-size: 0.75rem; }
+        .tech-logo-placeholder img { height: 32px; }
+    }
+</style>
+
     <!-- FOOTER -->
     <footer>
         <div class="container footer-grid">
@@ -1087,7 +1327,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> 47 Locust Avenue, Danbury, CT 06810</p>
                 <p><i class="fas fa-phone-alt"></i> Office: (203) 826-7340</p>
                 <p><i class="fab fa-whatsapp"></i> WhatsApp: +1 (203) 770-0442</p>
-                <p><i class="fas fa-envelope"></i> amazinggrace.home@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> amazinngrace.home@gmail.com</p>
                 <p><i class="fas fa-id-card"></i> License: HCA.0001448</p>
             </div>
             <div class="footer-links">
@@ -1100,7 +1340,7 @@
             <div class="footer-hours">
                 <h4>Care Availability</h4>
                 <p><i class="fas fa-clock"></i> 24/7 Live-In Care</p>
-                <p><i class="fas fa-sun"></i> Hourly Shifts (2-22 hrs)</p>
+                <p><i class="fas fa-sun"></i> Hourly Shifts</p>
                 <p><i class="fas fa-moon"></i> Night Shifts Available</p>
                 <p><i class="fas fa-calendar-week"></i> 7 Days a Week</p>
             </div>
